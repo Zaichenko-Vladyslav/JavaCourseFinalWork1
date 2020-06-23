@@ -27,7 +27,7 @@
  *
  * 1.9.  Create a fine header for the file
  *
- * 1.10  Use Java  Collections to demonstrate your experience (Map, List) 
+ * 1.10  Use Java  Collections to demonstrate your experience (Map, List)
  *
  * Show all your skills and experience.
  * All the tricks will be taken into account.
@@ -45,6 +45,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -56,11 +58,13 @@ public class Main {
 
 
     // 1.2. For each distinct word in the text calculate the number of occurrence.
-    //1.7.  Count them and arrange in alphabetic order.
+    // 1.7.  Count them and arrange in alphabetic order.
+    // 1.3. Use regular expression java
 
         String word = "";
         int counter = 1;
         String[] words = text.toLowerCase()
+                .replaceAll("[^a-zA-Z0-9' ]", "")
                 .replaceAll("\\.", "")
                 .replaceAll(",", "")
                 .replaceAll("\"", "")
@@ -147,11 +151,16 @@ public class Main {
             System.out.println("Word '" + key + "' occur in the text: " + value + " times");
         });
 
+
         // 1.8.  First 20 pairs and names write into to a file test.txt
         // 1.9.  Create a fine header for the file
         try(FileWriter writer = new FileWriter("harry.txt",true)) {
             writer.write("FINE HEADER FOR THE FILE \n" + String.valueOf(topWords20));
         }
+
+
+
+
 
     }
 }
