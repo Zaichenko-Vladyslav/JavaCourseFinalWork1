@@ -151,16 +151,23 @@ public class Main {
             System.out.println("Word '" + key + "' occur in the text: " + value + " times");
         });
 
+        // 1.6  Find all the proper names
+        List<String> propers = new ArrayList<>();
+
+        Pattern pattern = Pattern.compile("\\b[A-Z][a-z]{4,}\\b");
+        Matcher matcher = pattern.matcher(text);
+        while (matcher.find())
+        {
+            String properWord = matcher.group();
+            propers.add(properWord);
+            System.out.println(properWord);
+        }
 
         // 1.8.  First 20 pairs and names write into to a file test.txt
         // 1.9.  Create a fine header for the file
         try(FileWriter writer = new FileWriter("harry.txt",true)) {
             writer.write("FINE HEADER FOR THE FILE \n" + String.valueOf(topWords20));
         }
-
-
-
-
 
     }
 }
